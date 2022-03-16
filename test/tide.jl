@@ -114,34 +114,34 @@ end
 function test_tide_prediction()::Nothing
     model_radial = FES.CartesianTidalModel(
         Dict(
-            FES.k2N2 => "../test/data/2N2_radial.nc",
-            FES.kK1 => "../test/data/K1_radial.nc",
-            FES.kK2 => "../test/data/K2_radial.nc",
-            FES.kM2 => "../test/data/M2_radial.nc",
-            FES.kN2 => "../test/data/N2_radial.nc",
-            FES.kO1 => "../test/data/O1_radial.nc",
-            FES.kP1 => "../test/data/P1_radial.nc",
-            FES.kQ1 => "../test/data/Q1_radial.nc",
-            FES.kS2 => "../test/data/S2_radial.nc"),
+            "2N2" => "../test/data/2N2_radial.nc",
+            "K1" => "../test/data/K1_radial.nc",
+            "K2" => "../test/data/K2_radial.nc",
+            "M2" => "../test/data/M2_radial.nc",
+            "N2" => "../test/data/N2_radial.nc",
+            "O1" => "../test/data/O1_radial.nc",
+            "P1" => "../test/data/P1_radial.nc",
+            "Q1" => "../test/data/Q1_radial.nc",
+            "S2" => "../test/data/S2_radial.nc"),
         FES.kRadial)
 
     model_tide = FES.CartesianTidalModel(
         Dict(
-            FES.k2N2 => "../test/data/2N2_tide.nc",
-            FES.kK1 => "../test/data/K1_tide.nc",
-            FES.kK2 => "../test/data/K2_tide.nc",
-            FES.kM2 => "../test/data/M2_tide.nc",
-            FES.kM4 => "../test/data/M4_tide.nc",
-            FES.kMf => "../test/data/Mf_tide.nc",
-            FES.kMm => "../test/data/Mm_tide.nc",
-            FES.kMsqm => "../test/data/Msqm_tide.nc",
-            FES.kMtm => "../test/data/Mtm_tide.nc",
-            FES.kN2 => "../test/data/N2_tide.nc",
-            FES.kO1 => "../test/data/O1_tide.nc",
-            FES.kP1 => "../test/data/P1_tide.nc",
-            FES.kQ1 => "../test/data/Q1_tide.nc",
-            FES.kS1 => "../test/data/S1_tide.nc",
-            FES.kS2 => "../test/data/S2_tide.nc"),
+            "2N2" => "../test/data/2N2_tide.nc",
+            "K1" => "../test/data/K1_tide.nc",
+            "K2" => "../test/data/K2_tide.nc",
+            "M2" => "../test/data/M2_tide.nc",
+            "M4" => "../test/data/M4_tide.nc",
+            "Mf" => "../test/data/Mf_tide.nc",
+            "Mm" => "../test/data/Mm_tide.nc",
+            "Msqm" => "../test/data/Msqm_tide.nc",
+            "Mtm" => "../test/data/Mtm_tide.nc",
+            "N2" => "../test/data/N2_tide.nc",
+            "O1" => "../test/data/O1_tide.nc",
+            "P1" => "../test/data/P1_tide.nc",
+            "Q1" => "../test/data/Q1_tide.nc",
+            "S1" => "../test/data/S1_tide.nc",
+            "S2" => "../test/data/S2_tide.nc"),
         FES.kTide)
 
     dates = Vector{DateTime}(undef, 24)

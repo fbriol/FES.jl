@@ -114,10 +114,18 @@ function _fill_missing(
     array, dtype
 end
 
+function _get_wave_ident(wt::WaveTable, wave_name::String)::Ident
+    wave = find(wt, wave_name)
+    if isnothing(wave)
+        throw(ArgumentError("unknown wave: " * wave_name))
+    end
+    wave.ident
+end
+
 """
     function CartesianTidalModel(
-        paths::Dict{FES.Ident, String},
-        tide_type::FES.TideType,
+        paths::Dict{String, String},
+        tide_type::TideType,
         amp_varname::String="amplitude",
         pha_varname::String="phase",
         lon_varname::String="lon",
@@ -138,8 +146,8 @@ Load a tidal model from a set of HDF5 files.
 A CartesianTidalModel.
 """
 function CartesianTidalModel(
-    paths::Dict{FES.Ident, String},
-    tide_type::FES.TideType,
+    paths::Dict{String, String},
+    tide_type::TideType,
     amp_varname::String="amplitude",
     pha_varname::String="phase",
     lon_varname::String="lon",
@@ -156,7 +164,11 @@ function CartesianTidalModel(
     # Floating point precision of the data
     expected_dtype = nothing
 
-    for (ident, path) in paths
+    # List of known wave models
+    wt = WaveTable()
+
+    for (wave_name, path) in paths
+        ident = _get_wave_ident(wt, wave_name)
         ds = HDF5.h5open(path)
         try
             # Load amplitude

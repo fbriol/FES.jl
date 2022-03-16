@@ -10,6 +10,6 @@ include("wave_order2.jl")
 include("tide.jl")
 include("cartesian_model.jl")
 
-export AstronomicAngle, WaveTable, CartesianTidalModel
+export AstronomicAngle, WaveTable, CartesianTidalModel, WaveOrder2, evaluate_tide
 
 end
