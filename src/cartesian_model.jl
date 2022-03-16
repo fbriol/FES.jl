@@ -164,8 +164,7 @@ function CartesianTidalModel(
 
     for (wave_name, path) in paths
         ident = _get_wave_ident(wt, wave_name)
-        ds = HDF5.h5open(path)
-        try
+        HDF5.h5open(path) do ds
             # Load amplitude
             amp, dtype = _fill_missing(ds[amp_varname], "cm")
             if isnothing(expected_dtype)
@@ -201,8 +200,6 @@ function CartesianTidalModel(
                 end
             end
             waves[ident] = amp .* cosd.(pha) + amp .* sind.(pha) .* 1im
-        finally
-            HDF5.close(ds)
         end
     end
     waves = convert(Dict{FES.Ident, Matrix{Complex{expected_dtype}}}, waves)
