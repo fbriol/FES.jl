@@ -420,13 +420,13 @@ function find_indexes(
             # The found point is located after the coordinate provided.
             self.container.is_ascending ? i0 -= 1 : i0 += 1
             if self.is_circle
-                i0 = i0 == 0 ? n : i0 == n + 1 ? 1 : i0
+                i0 = remainder(i0 - 1, n) + 1
             end
         else
             # The found point is located before the coordinate provided.
             self.container.is_ascending ? i1 += 1 : i1 -= 1
             if self.is_circle
-                i1 = i1 == 0 ? n : i1 == n + 1 ? 1 : i1
+                i1 = remainder(i1 - 1, n) + 1
             end
         end
     end
