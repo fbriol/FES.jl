@@ -105,6 +105,9 @@ function _fill_missing(
     attrs = HDF5.attributes(variable)
     fill_val = HDF5.read(attrs["_FillValue"])[1]
     unit = HDF5.read(attrs["units"])
+    if typeof(unit) == Vector{String}
+        unit = unit[1]
+    end
     if unit != expected_unit
         varname = replace(HDF5.name(variable), "/" => "")
         throw(ErrorException(
@@ -112,14 +115,6 @@ function _fill_missing(
     end
     replace!(array, fill_val => convert(dtype, NaN))
     array, dtype
-end
-
-function _get_wave_ident(wt::WaveTable, wave_name::String)::Ident
-    wave = find(wt, wave_name)
-    if isnothing(wave)
-        throw(ArgumentError("unknown wave: " * wave_name))
-    end
-    wave.ident
 end
 
 """

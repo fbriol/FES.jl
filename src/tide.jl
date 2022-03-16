@@ -69,11 +69,26 @@ function _evaluate_tide(
 end
 
 
+function _get_wave_ident(wt::WaveTable, wave_name::String)::Ident
+    wave = find(wt, wave_name)
+    if isnothing(wave)
+        throw(ArgumentError("unknown wave: " * wave_name))
+    end
+    wave.ident
+end
+
+
 function _build_wave_table(
     self::AbstractTidalModel{T},
-    equilibrium_long_period::Vector{Ident}
-)::WaveTable where {T<:Real}
+    equilibrium_long_period::Vector{String}
+)::WaveTable where {T<:Real}    
     wave_table = WaveTable()
+    # Map equilibrium long period names to their identifiers.
+    equilibrium_long_period = if isempty(equilibrium_long_period)
+        Vector{Ident}()
+    else
+        map(x -> _get_wave_ident(wave_table, x), equilibrium_long_period)
+    end
     for id in keys(self.models)
         if isnothing(findfirst(x -> x == id, equilibrium_long_period))
             wave = wave_table.waves[Int64(id)]
@@ -82,10 +97,10 @@ function _build_wave_table(
             # If the data are read from a grid so the wave is not computed by
             # admittance
             wave.admittance = false
-        end
-    end
+        end    
+    end    
     wave_table
-end
+end    
 
 
 """
@@ -127,7 +142,7 @@ function evaluate_tide(
     date::Vector{DateTime},
     lon::Vector{Float64},
     lat::Vector{Float64};
-    equilibrium_long_period::Vector{Ident}=Vector{Ident}(),
+    equilibrium_long_period::Vector{String}=Vector{String}()
 )::Tuple{Vector{Float64},Vector{Float64},Vector{Int64}} where {T<:Real}
     n = length(date)
     if length(date) != length(lon)

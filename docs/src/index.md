@@ -93,6 +93,93 @@ Pkg.add("FES")
     end
 ```
 
+### FES2014 configuration
+
+```julia
+import FES
+
+function fes2014(
+    load_tide::String, ocean_tide::String
+)::Tuple{FES.CartesianTidalModel, FES.CartesianTidalModel}
+    model_radial = FES.CartesianTidalModel(
+        Dict(
+            "2N2" => joinpath(load_tide, "2n2.nc"),
+            "Eps2" => joinpath(load_tide, "eps2.nc"),
+            "J1" => joinpath(load_tide, "j1.nc"),
+            "K1" => joinpath(load_tide, "k1.nc"),
+            "K2" => joinpath(load_tide, "k2.nc"),
+            "L2" => joinpath(load_tide, "l2.nc"),
+            "Lambda2" => joinpath(load_tide, "la2.nc"),
+            "M2" => joinpath(load_tide, "m2.nc"),
+            "M3" => joinpath(load_tide, "m3.nc"),
+            "M4" => joinpath(load_tide, "m4.nc"),
+            "M6" => joinpath(load_tide, "m6.nc"),
+            "M8" => joinpath(load_tide, "m8.nc"),
+            "Mf" => joinpath(load_tide, "mf.nc"),
+            "MKS2" => joinpath(load_tide, "mks2.nc"),
+            "Mm" => joinpath(load_tide, "mm.nc"),
+            "MN4" => joinpath(load_tide, "mn4.nc"),
+            "MS4" => joinpath(load_tide, "ms4.nc"),
+            "MSf" => joinpath(load_tide, "msf.nc"),
+            "Msqm" => joinpath(load_tide, "msqm.nc"),
+            "Mtm" => joinpath(load_tide, "mtm.nc"),
+            "Mu2" => joinpath(load_tide, "mu2.nc"),
+            "N2" => joinpath(load_tide, "n2.nc"),
+            "N4" => joinpath(load_tide, "n4.nc"),
+            "Nu2" => joinpath(load_tide, "nu2.nc"),
+            "O1" => joinpath(load_tide, "o1.nc"),
+            "P1" => joinpath(load_tide, "p1.nc"),
+            "Q1" => joinpath(load_tide, "q1.nc"),
+            "R2" => joinpath(load_tide, "r2.nc"),
+            "S1" => joinpath(load_tide, "s1.nc"),
+            "S2" => joinpath(load_tide, "s2.nc"),
+            "S4" => joinpath(load_tide, "s4.nc"),
+            "Sa" => joinpath(load_tide, "sa.nc"),
+            "Ssa" => joinpath(load_tide, "ssa.nc"),
+            "T2" => joinpath(load_tide, "t2.nc)")),
+        FES.kRadial)
+
+    model_tide = FES.CartesianTidalModel(
+        Dict(
+            "2N2" => joinpath(ocean_tide, "2n2.nc"),
+            "Eps2" => joinpath(ocean_tide, "eps2.nc"),
+            "J1" => joinpath(ocean_tide, "j1.nc"),
+            "K1" => joinpath(ocean_tide, "k1.nc"),
+            "K2" => joinpath(ocean_tide, "k2.nc"),
+            "L2" => joinpath(ocean_tide, "l2.nc"),
+            "Lambda2" => joinpath(ocean_tide, "la2.nc"),
+            "M2" => joinpath(ocean_tide, "m2.nc"),
+            "M3" => joinpath(ocean_tide, "m3.nc"),
+            "M4" => joinpath(ocean_tide, "m4.nc"),
+            "M6" => joinpath(ocean_tide, "m6.nc"),
+            "M8" => joinpath(ocean_tide, "m8.nc"),
+            "Mf" => joinpath(ocean_tide, "mf.nc"),
+            "MKS2" => joinpath(ocean_tide, "mks2.nc"),
+            "Mm" => joinpath(ocean_tide, "mm.nc"),
+            "MN4" => joinpath(ocean_tide, "mn4.nc"),
+            "MS4" => joinpath(ocean_tide, "ms4.nc"),
+            "MSf" => joinpath(ocean_tide, "msf.nc"),
+            "Msqm" => joinpath(ocean_tide, "msqm.nc"),
+            "Mtm" => joinpath(ocean_tide, "mtm.nc"),
+            "Mu2" => joinpath(ocean_tide, "mu2.nc"),
+            "N2" => joinpath(ocean_tide, "n2.nc"),
+            "N4" => joinpath(ocean_tide, "n4.nc"),
+            "Nu2" => joinpath(ocean_tide, "nu2.nc"),
+            "O1" => joinpath(ocean_tide, "o1.nc"),
+            "P1" => joinpath(ocean_tide, "p1.nc"),
+            "Q1" => joinpath(ocean_tide, "q1.nc"),
+            "R2" => joinpath(ocean_tide, "r2.nc"),
+            "S1" => joinpath(ocean_tide, "s1.nc"),
+            "S2" => joinpath(ocean_tide, "s2.nc"),
+            "S4" => joinpath(ocean_tide, "s4.nc"),
+            "Sa" => joinpath(ocean_tide, "sa.nc"),
+            "Ssa" => joinpath(ocean_tide, "ssa.nc"),
+            "T2" => joinpath(ocean_tide, "t2.nc")),
+        FES.kTide)
+    model_radial, model_tide
+end
+```
+
 ## Module Index
 
 ```@index
