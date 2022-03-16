@@ -1,0 +1,10 @@
+name = "FES"
+uuid = "869d99a3-9af1-44f9-bb7b-8310d0c89c90"
+authors = ["Frédéric Briol <fbriol@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+HDF5 = "f67ccb44-e63f-5c2f-98bd-6dc0ccc4ba2f"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
