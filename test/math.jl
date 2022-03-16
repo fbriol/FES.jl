@@ -14,6 +14,5 @@ function test_bilinear_interpolation()
         0.0, 1.0, 0.0, 1.0, 0.5, 0.5, 0 + 0im, 1.0 + 0im, 2.0 + 0im, 3.0 + 0im)
     @test r == 1.5 + 0im
     @test n == 4
+    nothing
 end
-
-test_bilinear_interpolation()

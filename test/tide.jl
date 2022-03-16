@@ -158,7 +158,3 @@ function test_tide_prediction()::Nothing
     check_tide(tide, radial)
     nothing
 end    
-
-test_tide_prediction()
-
-nothing

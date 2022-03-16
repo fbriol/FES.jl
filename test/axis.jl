@@ -55,6 +55,7 @@ function test_regular_container()
     @test FES.find_index(a1, 180.0, false) == 180
     @test FES.find_index(a1, 360.0, false) == -1
     @test FES.find_index(a1, 360.0, true) == 1
+    nothing
 end
 
 function test_axis_singleton()
@@ -72,6 +73,7 @@ function test_axis_singleton()
     @test FES.max_value(a1) == 1.0
     @test FES.coordinate_value(a1, 1) == 1.0
     @test_throws ArgumentError FES.step(a1)
+    nothing
 end
 
 # function test_axis_binary()
@@ -155,6 +157,7 @@ function test_axis_wrap_longitude()
     @test FES.max_value(a1) == 180
     @test FES.coordinate_value(a1, 1) == 180.0
     @test FES.coordinate_value(a1, 181) == 0
+    nothing
 end
 
 function test_irregular_axis()
@@ -240,6 +243,7 @@ function test_irregular_axis()
     @test i1 == 1
     indexes = FES.find_indexes(a1, 60.0)
     @test indexes == (40, 39)
+    nothing
 end
 
 function test_search_indexes()
@@ -270,13 +274,5 @@ function test_search_indexes()
     @test indexes == (360, 359)    
     indexes = FES.find_indexes(a1, 358.9)
     @test indexes == (2, 1)
-
+    nothing
 end
-
-test_irregular_container()
-test_regular_container()
-test_axis_singleton()
-test_axis_wrap_longitude()
-test_irregular_axis()
-test_search_indexes()
-# test_axis_binary()
